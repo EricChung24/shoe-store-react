@@ -203,7 +203,6 @@ export default function Home() {
               </div>
             </a>
           </div>
-
           {/* 右：兩張小圖 + 一張橫圖 */}
           <div className="col-12 col-lg-6">
             <div className="row g-3">
