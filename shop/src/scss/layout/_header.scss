@@ -1,4 +1,139 @@
-.header{
-  background: #69F0AE;
+.header {
+  background: #69f0ae;
   font-size: 64px;
+}
+.productSwiper .swiper-slide {
+  max-width: 300px !important;
+}
+.productSwiper .swiper-slide a {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+.product-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -4px;
+  margin-right: -4px;
+}
+.product-col {
+  width: 50%;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.product-color {
+  width: 64px;
+  text-align: center;
+  color: $neutral-600;
+}
+.product-action {
+  display: flex;
+  gap: 8px;
+}
+.product-action .btn {
+  width: 50%;
+}
+.product-action .bi {
+  padding-right: 8px;
+  width: 19px;
+  height: 19px;
+}
+.product-card {
+  position: relative;
+  .tag {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    p {
+      background-color: $primary-100;
+      padding: 8px 12px;
+      margin: 0;
+      font-size: 14px;
+      font-weight: bold;
+      color: $primary-400;
+      border-radius: 4px;
+    }
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: $neutral-600;
+    .breadcrumb-link {
+      display: inline-block;
+      text-decoration: none;
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &.active {
+      color: $neutral-900;
+      font-weight: 700;
+    }
+    // 分隔符號，參考你給的大小
+    &::after {
+      content: "/";
+      color: $neutral-300;
+      display: inline-block;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0;
+      font-weight: 700;
+      vertical-align: top;
+      margin: 0 12px;
+    }
+    &:last-child::after {
+      content: "";
+      margin: 0;
+    }
+  }
+}
+
+// 分頁容器連結按鈕
+.pagination {
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    // 狀態樣式
+    &:hover {
+      background-color: $neutral-100;
+    }
+    &:active {
+      background-color: $primary-300;
+    }
+    // 禁用狀態
+    &.disabled {
+      color: #ccc; // 淡灰色
+      pointer-events: none; // 禁止點擊
+      cursor: not-allowed;
+    }
+  }
+}
+// 分頁項目內的按鈕
+.page-item {
+  .btn {
+    border-radius: 0;
+    padding: 8px 15px;
+    font-weight: 400;
+    &:hover {
+      background-color: $neutral-100;
+    }
+    &.active {
+      background-color: $primary-300;
+      font-weight: 500;
+    }
+  }
 }

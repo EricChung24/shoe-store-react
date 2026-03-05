@@ -13,7 +13,7 @@ export default function Header() {
             </li>
 
             <li className="nav-item me-3">
-              <NavLink className="nav-link link-dark fw-bold" to="/products">
+              <NavLink className="nav-link link-dark fw-bold" to="/product">
                 商品列表
               </NavLink>
             </li>
