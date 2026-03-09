@@ -1,0 +1,171 @@
+.bg-img {
+  background-image: url("/images/hero.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  min-height: 800px;
+  position: relative;
+}
+
+.bg-img h1,
+.bg-img p,
+.bg-img button {
+  position: absolute;
+  left: 220px;
+  margin: 0;
+}
+
+.bg-img h1 {
+  bottom: 480px;
+  font-size: 62px;
+  line-height: 1.1;
+}
+
+.bg-img p {
+  bottom: 440px;
+  font-size: 30px;
+  max-width: 520px;
+}
+
+.bg-img button {
+  bottom: 340px;
+  font-size: 16px;
+}
+
+@media (max-width: 992px) {
+  .bg-img {
+    min-height: 620px;
+  }
+
+  .bg-img h1,
+  .bg-img p,
+  .bg-img button {
+    left: 64px;
+  }
+
+  .bg-img h1 {
+    bottom: 360px;
+    font-size: 44px;
+  }
+
+  .bg-img p {
+    bottom: 320px;
+    font-size: 20px;
+    max-width: 360px;
+  }
+
+  .bg-img button {
+    bottom: 250px;
+    font-size: 14px;
+  }
+
+  .hero-slogan {
+    color: #fff;
+  }
+}
+
+@media (max-width: 576px) {
+  .bg-img {
+    min-height: 420px;
+  }
+
+  .bg-img h1,
+  .bg-img p,
+  .bg-img button {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .bg-img h1 {
+    bottom: 250px;
+    font-size: 32px;
+  }
+
+  .bg-img p {
+    bottom: 210px;
+    font-size: 16px;
+    max-width: 280px;
+    padding: 0 12px;
+  }
+
+  .bg-img button {
+    bottom: 150px;
+    font-size: 14px;
+  }
+
+  .hero-slogan {
+    color: #dc3545;
+    font-weight: 700;
+  }
+}
+
+.puzzle-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  text-decoration: none;
+}
+
+.puzzle-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.35s ease;
+  display: block;
+}
+
+.puzzle-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.puzzle-title {
+  color: #fff;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.puzzle-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+.puzzle-card:hover img {
+  transform: scale(1.06);
+}
+
+.puzzle-card--lg {
+  height: 456px;
+}
+
+.puzzle-card--sm,
+.puzzle-card--wide {
+  height: 220px;
+}
+
+@media (max-width: 992px) {
+  .puzzle-card--lg {
+    height: 380px;
+  }
+}
+
+@media (max-width: 576px) {
+  .puzzle-card--lg {
+    height: 300px;
+  }
+
+  .puzzle-title {
+    font-size: 18px;
+  }
+}
