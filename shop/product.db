@@ -1,0 +1,84 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "PLATFORM 404",
+      "price": 2600,
+      "image": "/images/products/product.png",
+      "alt": "PLATFORM 404",
+      "category": "running"
+    },
+    {
+      "id": 2,
+      "name": "PLATFORM 404",
+      "price": 2600,
+      "image": "/images/products/product-1.png",
+      "alt": "PLATFORM 404",
+      "category": "running"
+    },
+    {
+      "id": 3,
+      "name": "VM001",
+      "price": 2600,
+      "image": "/images/products/product-2.png",
+      "alt": "VM001",
+      "category": "running"
+    },
+    {
+      "id": 4,
+      "name": "Melty Kiss",
+      "price": 4000,
+      "image": "/images/products/product-3.png",
+      "alt": "Melty Kiss",
+      "category": "casual"
+    },
+    {
+      "id": 5,
+      "name": "BOOMBLOK",
+      "price": 3200,
+      "image": "/images/products/product-4.png",
+      "alt": "BOOMBLOK",
+      "category": "casual"
+    },
+    {
+      "id": 6,
+      "name": "BOOMBLOK",
+      "price": 3200,
+      "image": "/images/products/product-5.png",
+      "alt": "BOOMBLOK",
+      "category": "casual"
+    },
+    {
+      "id": 7,
+      "name": "R:UNER",
+      "price": 4000,
+      "image": "/images/products/product-6.png",
+      "alt": "R:UNER",
+      "category": "performance"
+    },
+    {
+      "id": 8,
+      "name": "Sugar Snap",
+      "price": 4000,
+      "image": "/images/products/product-7.png",
+      "alt": "Sugar Snap",
+      "category": "lifestyle"
+    },
+    {
+      "id": 9,
+      "name": "Neofoam",
+      "price": 4000,
+      "image": "/images/products/product-8.png",
+      "alt": "Neofoam",
+      "category": "lifestyle"
+    },
+    {
+      "id": 10,
+      "name": "Buttermood",
+      "price": 4000,
+      "image": "/images/products/product-9.png",
+      "alt": "Buttermood",
+      "category": "lifestyle"
+    }
+  ]
+}

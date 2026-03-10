@@ -1,157 +1,135 @@
-import product from "../assets/images/product.png";
-import product1 from "../assets/images/product-1.png";
-import product2 from "../assets/images/product-2.png";
-import product3 from "../assets/images/product-3.png";
-import product4 from "../assets/images/product-4.png";
-import product5 from "../assets/images/product-5.png";
-import product6 from "../assets/images/product-6.png";
-import product7 from "../assets/images/product-7.png";
-import product8 from "../assets/images/product-8.png";
-import product9 from "../assets/images/product-9.png";
+﻿import { useEffect, useMemo, useState } from "react";
+import axios from "axios";
+
+function formatPrice(value) {
+  return `NT$${Number(value).toLocaleString("en-US")}`;
+}
 
 export default function ProductList() {
-  const products = [
-    {
-      id: 1,
-      name: "PLATFORM 404",
-      price: "NT$2,600",
-      image: product,
-      alt: "PLATFORM 404",
-    },
-    {
-      id: 2,
-      name: "PLATFORM 404",
-      price: "NT$2,600",
-      image: product1,
-      alt: "PLATFORM 404",
-    },
-    {
-      id: 3,
-      name: "VM001",
-      price: "NT$2,600",
-      image: product2,
-      alt: "VM001",
-    },
-    {
-      id: 4,
-      name: "Melty Kiss",
-      price: "NT$4,000",
-      image: product3,
-      alt: "Melty Kiss",
-    },
-    {
-      id: 5,
-      name: "BOOMBLOK",
-      price: "NT$3,200",
-      image: product4,
-      alt: "BOOMBLOK",
-    },
-    {
-      id: 6,
-      name: "BOOMBLOK",
-      price: "NT$3,200",
-      image: product5,
-      alt: "BOOMBLOK",
-    },
-    {
-      id: 7,
-      name: "R:UNER",
-      price: "NT$4,000",
-      image: product6,
-      alt: "R:UNER",
-    },
-    {
-      id: 8,
-      name: "Sugar Snap",
-      price: "NT$4,000",
-      image: product7,
-      alt: "Sugar Snap",
-    },
-    {
-      id: 9,
-      name: "Neofoam",
-      price: "NT$4,000",
-      image: product8,
-      alt: "Neofoam",
-    },
-    {
-      id: 10,
-      name: "Buttermood",
-      price: "NT$4,000",
-      image: product9,
-      alt: "Buttermood",
-    },
-  ];
+  const [products, setProducts] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem("products_cache");
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [loading, setLoading] = useState(products.length === 0);
+  const [error, setError] = useState("");
 
-  const categories = ["所有商品", "慢跑鞋", "滑板鞋", "厚底鞋", "限定 / 聯名企劃"];
+  useEffect(() => {
+    let mounted = true;
+
+    async function fetchProducts() {
+      try {
+        const res = await axios.get("http://localhost:3001/products");
+        if (mounted) {
+          const nextProducts = res.data ?? [];
+          setProducts(nextProducts);
+          sessionStorage.setItem("products_cache", JSON.stringify(nextProducts));
+          setError("");
+        }
+      } catch {
+        if (mounted) {
+          if (products.length === 0) {
+            setError("產品資料讀取失敗，請先啟動 json-server。");
+          }
+        }
+      } finally {
+        if (mounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchProducts();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const categories = useMemo(
+    () => ["慢跑鞋", "訓練鞋", "休閒鞋", "聯名款", "配件"],
+    []
+  );
 
   return (
-    <>
-      
+    <main className="container py-8 mb-4">
+      <nav className="mb-6" aria-label="breadcrumb">
+        <ol className="breadcrumb align-items-center mb-0">
+          <li className="breadcrumb-item">
+            <a href="/" className="breadcrumb-link">
+              首頁
+            </a>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            產品列表
+          </li>
+        </ol>
+      </nav>
 
-      <main className="container py-8 mb-4">
-        {/* 麵包屑 */}
-        <nav className="mb-6" aria-label="breadcrumb">
-          <ol className="breadcrumb align-items-center mb-0">
-            <li className="breadcrumb-item">
-              <a href="/" className="breadcrumb-link">
-                首頁
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="/" className="breadcrumb-link">
-                女鞋
-              </a>
-            </li>
-            <li className="breadcrumb-item  active " aria-current="page">
-              所有商品
-            </li>
-          </ol>
-        </nav>
+      <h1 className="h3 mt-6 py-1-5 mb-6">產品列表</h1>
 
-        <h1 className="h3 mt-6 py-1-5 mb-6">女鞋</h1>
+      <div className="row">
+        <div className="col-md-2 d-none d-md-block">
+          <nav>
+            <ul className="category list-unstyled mb-0">
+              {categories.map((item, index) => (
+                <li className="mb-4" key={item}>
+                  <a
+                    href="#"
+                    className={`d-block py-3 list-title ${index === 0 ? "active" : ""}`}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
-        <div className="row">
-          {/* 左側分類 */}
-          <div className="col-md-2 d-none d-md-block">
-            <nav>
-              <ul className="category list-unstyled mb-0">
-                {categories.map((item, index) => (
-                  <li className="mb-4" key={item}>
-                    <a
-                      href="#"
-                      className={`d-block py-3 list-title ${
-                        index === 0 ? "active" : ""
-                      }`}
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+        <div className="col-12 col-md-10">
+          {error && products.length === 0 && <p className="text-danger mb-0">{error}</p>}
 
-          {/* 右側商品列表 */}
-          <div className="col-12 col-md-10">
+          {loading && products.length === 0 && (
+            <div className="row">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div className="col-6 col-md-4 mb-12 mb-md-6" key={`skeleton-${index}`}>
+                  <div className="placeholder-glow">
+                    <span
+                      className="placeholder w-100 d-block mb-3"
+                      style={{ height: "240px" }}
+                    ></span>
+                    <span className="placeholder col-8 d-block mx-auto mb-2"></span>
+                    <span className="placeholder col-4 d-block mx-auto"></span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {products.length > 0 && (
             <div className="row">
               {products.map((item) => (
-                <div className="col-6 col-md-4 mb-12 mb-md-6 " key={item.id}>
-                  <a href="/product" className="d-block text-decoration-none  text-dark">
+                <div className="col-6 col-md-4 mb-12 mb-md-6" key={item.id}>
+                  <a href="/product" className="d-block text-decoration-none text-dark">
                     <img
                       className="img-fluid mb-3 mb-md-2"
                       src={item.image}
-                      alt={item.alt}
+                      alt={item.alt || item.name}
+                      loading="lazy"
+                      decoding="async"
                     />
                     <h2 className="h6 mb-1 mb-md-0 text-center">{item.name}</h2>
-                    <p className="md-p mb-0 text-center">{item.price}</p>
+                    <p className="md-p mb-0 text-center">{formatPrice(item.price)}</p>
                   </a>
                 </div>
               ))}
             </div>
-          </div>
+          )}
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
